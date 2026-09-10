@@ -15,11 +15,9 @@ so every number in the results table is directly comparable.
 
 | File | Purpose |
 |---|---|
-| `hcv-final.ipynb` | Main pipeline — ESM-2 fine-tuning, ESMFold, ColabFold folding, feature extraction, classifier grid, XAI |
-| `alphafold-final (1).ipynb` | Standalone AlphaFold2 (ColabFold) arm — fold, parse structural features, evaluate, explain |
-| `hcv_pipeline.py` | Shared module: cohort construction, feature extractors, evaluation harness, XAI |
-| `hcv_enriched.csv` | Input table (see dataset link above) |
-| `requirements.txt` | Python dependencies |
+| `hcv.ipynb` | Main pipeline — ESM-2 fine-tuning, ESMFold, ColabFold folding, feature extraction, classifier grid, XAI |
+| `alphafold.ipynb` | Standalone AlphaFold2 (ColabFold) arm — fold, parse structural features, evaluate, explain |
+| `hcv.csv` | Input table (see dataset link above) |
 
 Outputs produced at runtime: `grid_results.csv`, `colabfold_results.csv`,
 `explanations.csv`, `colabfold_explanations.csv`, `fig_*.png`,
@@ -36,7 +34,7 @@ for HCV genotype-4 resistance calls. It runs two self-contained notebooks:
   folds structures with ESMFold and ColabFold, extracts features, trains five
   classifiers on five feature sources, and produces the results tables and
   figures.
-- **`alphafold-final (1).ipynb`** isolates the AlphaFold2 arm: fold, parse
+- **`alphafold.ipynb`** isolates the AlphaFold2 arm: fold, parse
   structural features, evaluate, and explain, so AlphaFold2 can be studied on
   its own without the rest of the pipeline interfering.
 
@@ -48,7 +46,7 @@ feature extractors, classifier grid, metrics, and explainability helpers.
 ## Pipeline
 
 ```
-hcv_enriched.csv
+hcv.csv
       │
       ├─► build_common_cohort()  ─► one shared cohort (binary + 4-class)
       │
@@ -84,21 +82,12 @@ hcv_enriched.csv
 ### Google Colab (recommended)
 
 1. **Runtime → Change runtime type → GPU** (T4 is enough for the default profile).
-2. Upload `hcv-final.ipynb`, `alphafold-final (1).ipynb`, and `hcv_enriched.csv`
+2. Upload `hcv.ipynb`, `alphafold.ipynb`, and `hcv.csv`
    into `/content/`.
 3. **Runtime → Run all** in either notebook. The first cell writes
    `hcv_pipeline.py` to disk, so no manual module setup is needed.
 4. When the run finishes, `grid_results.csv` and every `fig_*.png` are in
    `/content/`.
-
-### Local
-
-```bash
-git clone <this-repo>
-cd <repo>
-pip install -r requirements.txt
-jupyter notebook hcv-final.ipynb
-```
 
 ---
 
