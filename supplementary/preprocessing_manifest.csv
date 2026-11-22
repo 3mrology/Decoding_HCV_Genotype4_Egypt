@@ -1,7 +1,0 @@
-stage,criterion,records_removed,accessions_removed,records_remaining,note
-corpus as received,all records,,,25981,
-withhold 20% of accessions (accession-level purge),accession-level,5184,72,20797,"72 accessions withheld; accession counts are not additive, because the purge applies to the pretraining copy and the evaluation cohort retains all 361. Filter rows carry 0 in this column because record-level filters remove records, not accessions."
-"drop non-GT labels (mixed, indeterminate)",label,14000,0,6797,
-drop length <100 aa or >2000 aa,length,2900,0,3897,
-drop >10 ambiguous residues,ambiguity,2006,0,1891,
-collapse the exact duplicate pair,duplicate,1,1,1890,the second of one exact duplicate pair
